@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Jawaban Salah</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+html,body{
+margin:0;
+padding:0;
+width:100%;
+height:100%;
+overflow:hidden;
+font-family:'Poppins',sans-serif;
+color:white;
+}
+
+.overlay{
+position:fixed;
+inset:0;
+background:radial-gradient(circle at bottom left,#0b2a4a,#061a33 70%);
+z-index:-3;
+}
+
+.star{
+position:absolute;
+width:3px;
+height:3px;
+background:white;
+border-radius:50%;
+animation:blink 2s infinite alternate;
+z-index:-1;
+}
+
+@keyframes blink{
+from{opacity:.2;}
+to{opacity:1;}
+}
+
+.container{
+width:100%;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+}
+
+.emoji{
+font-size:120px;
+animation:floatEmoji 2s ease-in-out infinite;
+}
+
+@keyframes floatEmoji{
+0%{transform:translateY(0);}
+50%{transform:translateY(-15px);}
+100%{transform:translateY(0);}
+}
+
+.title{
+margin-top:20px;
+font-size:38px;
+font-weight:700;
+color:#ff8c8c;
+text-shadow:0 0 15px rgba(255,140,140,.4);
+}
+
+.desc{
+margin-top:15px;
+font-size:18px;
+line-height:1.8;
+width:70%;
+}
+
+.retry-btn{
+margin-top:40px;
+padding:15px 28px;
+border-radius:14px;
+cursor:pointer;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(10px);
+box-shadow:0 0 15px rgba(0,200,255,0.2);
+transition:.2s;
+}
+
+.retry-btn:hover{
+transform:scale(1.05);
+background:rgba(255,255,255,0.15);
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<div class="container">
+
+<div class="emoji">😢</div>
+
+<div class="title">
+Jawaban Salah
+</div>
+
+<div class="desc">
+Yahh jawaban kamu masih belum tepat.
+Coba pelajari lagi materinya dan coba lagi ya!
+</div>
+
+<div class="retry-btn" onclick="retryQuiz()">
+Coba Lagi ↺
+</div>
+
+</div>
+
+<script>
+
+/* ===== SOUND SALAH ===== */
+function playWrongSound(){
+    let sfx = new Audio("assets/audio/wrong.mp3");
+    sfx.play().catch(()=>{});
+}
+
+window.addEventListener("load", () => {
+    playWrongSound();
+});
+
+function retryQuiz(){
+window.location.href="soal_satu.html";
+}
+
+/* STAR */
+for(let i=0;i<50;i++){
+
+let star=document.createElement("div");
+
+star.classList.add("star");
+
+star.style.top=Math.random()*window.innerHeight+"px";
+star.style.left=Math.random()*window.innerWidth+"px";
+
+document.body.appendChild(star);
+}
+</script>
+
+</body>
+</html>

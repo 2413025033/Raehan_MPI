@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tujuan Pembelajaran</title>
+
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    overflow: hidden;
+}
+
+/* BACKGROUND */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at bottom, #0b2a4a, #061a33);
+    z-index: -2;
+}
+
+/* ORB */
+.orb {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background: rgba(0,200,255,0.08);
+    border-radius: 50%;
+    filter: blur(10px);
+    animation: floatSmooth 6s ease-in-out infinite;
+    z-index: -1;
+}
+
+.o1 { top: 20%; left: 10%; }
+.o2 { top: 60%; right: 15%; animation-delay: 2s; }
+.o3 { top: 80%; left: 40%; animation-delay: 4s; }
+
+@keyframes floatSmooth {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+    100% { transform: translateY(0px); }
+}
+
+/* STAR */
+.star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    animation: blink 2s infinite alternate;
+    z-index: -1;
+}
+
+@keyframes blink {
+    from { opacity: 0.2; }
+    to { opacity: 1; }
+}
+
+/* HEADER */
+header {
+    text-align: center;
+    margin-top: 60px;
+    font-weight: 700;
+    font-size: 32px;
+    letter-spacing: 2px;
+    animation: floatSmooth 4s ease-in-out infinite;
+    text-shadow: 0 0 10px rgba(95, 208, 255, 0.4);
+}
+
+/* BUTTON */
+.top-btn {
+    position: absolute;
+    top: 20px;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    cursor: pointer;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    color: white;
+    font-size: 18px;
+    box-shadow: 0 0 15px rgba(0,200,255,0.2);
+    transition: 0.2s;
+}
+
+.top-btn:hover {
+    transform: scale(1.1);
+    background: rgba(255,255,255,0.15);
+}
+
+.back { left: 20px; }
+.sound { right: 20px; }
+
+/* CONTAINER */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85vh;
+}
+
+/* CARD */
+.card {
+    width: 70%;
+    max-width: 700px;
+    padding: 30px;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(0,200,255,0.2);
+    animation: floatSmooth 5s ease-in-out infinite;
+}
+
+/* LIST */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin: 15px 0;
+    font-size: 18px;
+    padding-left: 25px;
+    position: relative;
+}
+
+li::before {
+    content: "➤";
+    position: absolute;
+    left: 0;
+    color: #5fd0ff;
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<div class="orb o1"></div>
+<div class="orb o2"></div>
+<div class="orb o3"></div>
+
+<!-- BUTTON -->
+<div class="top-btn back" onclick="goBack()">⬅</div>
+<div class="top-btn sound" onclick="toggleSound()">♪</div>
+
+<header>Tujuan Pembelajaran</header>
+
+<div class="container">
+    <div class="card">
+        <ul>
+            <li>Memahami konsep Input, Proses, dan Output</li>
+            <li>Mengetahui contoh perangkat IPO</li>
+            <li>Menjelaskan alur kerja sistem komputer</li>
+            <li>Membedakan fungsi tiap komponen</li>
+            <li>Menerapkan konsep IPO dalam kehidupan sehari-hari</li>
+        </ul>
+    </div>
+</div>
+
+<!-- ❌ AUDIO DIHAPUS DARI HTML (BIAR FULL DI JS) -->
+
+<script>
+function goBack() {
+    window.location.href = "menu.html";
+}
+
+// star generator (tetap)
+for (let i = 0; i < 50; i++) {
+    let star = document.createElement("div");
+    star.classList.add("star");
+
+    star.style.top = Math.random() * window.innerHeight + "px";
+    star.style.left = Math.random() * window.innerWidth + "px";
+
+    document.body.appendChild(star);
+}
+</script>
+
+<!-- 🔊 MUSIC DIHANDLE FULL OLEH JS GLOBAL -->
+<script src="assets/sound.js"></script>
+
+</body>
+</html>
